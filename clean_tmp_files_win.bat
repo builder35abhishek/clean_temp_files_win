@@ -1,19 +1,15 @@
-:: TO delete cookies
-@echo off
-c:
-cd %USERPROFILE%\COOKIES
-del *.* /s /q
-:: Delete Temp files from  Internet
-cd \
-cd %USERPROFILE%\"Local Settings"\"Temporary Internet Files"
-del *.* /s /q
-rmdir . /s /q
-:: Delete files from  PREFETCH folder
-cd \
-cd %WINDIR%\PREFETCH
-del *.* /s /q
-cd \
-cd %TEMP%
-del *.* /s /q
-:: To delete files from Recycle bin
-echo y|rmdir /s %systemdrive%\$Recycle.bin
+@echo OFF
+set myDirName=%USERPROFILE%\COOKIES
+IF exist "%myDirName%" ( echo Deleted:- %myDirName% && echo y | rmdir /s %myDirName% ) ELSE ( echo Skipping:- Diretory dosent exist: %myDirName% )
+
+set myDirName=%USERPROFILE%\Local Settings\Temporary Internet Files
+IF exist "%myDirName%" ( echo Deleted:- %myDirName% && echo y | rmdir /s %myDirName% ) ELSE ( echo Skipping:- Diretory dosent exist: %myDirName% )
+
+set myDirName=%WINDIR%\PREFETCH
+IF exist "%myDirName%" ( echo Deleted:- %myDirName% && echo y | rmdir /s %myDirName% ) ELSE ( echo Skipping:- Diretory dosent exist: %myDirName% )
+
+set myDirName=%TEMP%
+IF exist "%myDirName%" ( echo Deleted:- %myDirName% && echo y | rmdir /s %myDirName% ) ELSE ( echo Skipping:- Diretory dosent exist: %myDirName% )
+
+set myDirName=%systemdrive%\$Recycle.bin
+IF exist "%myDirName%" ( echo Deleted:- %myDirName% && echo y | rmdir /s %myDirName% ) ELSE ( echo Skipping:- Diretory dosent exist: %myDirName% )
